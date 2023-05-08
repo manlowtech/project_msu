@@ -1,0 +1,196 @@
+WindowManager:
+    LoginScreen:
+    RegisterPage:
+    DashboardScreen:
+    MainWindow:
+    SecondWindow:
+    WelcomeNote:
+    #DashboardScreen:
+    #LoginScreen:
+
+<MainWindow>:
+    name: "main"
+
+    GridLayout:
+        cols:1
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "Password: "
+
+            TextInput:
+                id: passw
+                multiline: False
+
+        Button:
+            text: "Submit"
+            on_release:
+                app.root.current = "second" if passw.text == "tim" else "main"
+                root.manager.transition.direction = "left"
+
+
+<SecondWindow>:
+    name: "second"
+
+    Button:
+        text: "Go Back"
+        on_release:
+            app.root.current = "main"
+            root.manager.transition.direction = "right"
+    Button:
+        text: "Go Welcome"
+        on_release:
+            app.root.current = "welcome_note"
+            root.manager.transition.direction = "right"
+<WelcomeNote>:
+    name:"welcome_note"
+    Button:
+        text:"Go To Login Page"
+        on_release:
+            app.root.current="login_page"
+            root.manager.transition.direction = "left"
+            app.title="LOGIN"
+<RegisterPage>:
+    name:"register_page"
+    size_hint:0.55,0.9
+    pos_hint:{"center_x":0.5,"center_y":0.5}
+    MDCard:
+        
+        elevation:3
+        md_bg_color:"white"
+        MDGridLayout:
+            cols:1
+            MDLabel:
+                text:"REGISTER ACCOUNT"
+                halign:"center"
+            MDGridLayout:
+                cols:2
+                MDLabel:
+                    text:"UserName"
+                MDTextField:
+                    id:UserName
+                    hint_text: "Enter UserName..."
+                    helper_text: "There will always be a mistake"
+                    helper_text_mode: "on_error"
+                    
+                MDLabel:
+                    text:"Enter Password"
+                MDTextField:
+                    id:UserName
+                    hint_text: "Enter Password..."
+                    helper_text: "There will always be a mistake"
+                    helper_text_mode: "on_error"
+                    password:True
+                MDLabel:
+                    text:"Verify Password"
+                MDTextField:
+                    id:UserName
+                    hint_text: "Verify Password"
+                    helper_text: "There will always be a mistake"
+                    helper_text_mode: "on_error"
+                    password:True
+                
+            MDRaisedButton:
+                text:"Return To Login"
+                size_hint:0.5,0.6
+                on_release:    
+                    app.root.current="login_page"
+                    root.manager.transition.direction = "right"
+                    #app.title = "Welcome Note"
+            MDRaisedButton:
+                text:"Go To Dash"
+                size_hint:0.5,0.6
+                on_release:    
+                    app.root.current="dash_page"
+                    root.manager.transition.direction = "right"
+                    #app.title = "Welcome Note"
+<DashboardScreen>:
+    name:"dash_page"
+    MDBoxLayout:
+        orientation:"vertical"
+        MDTopAppBar:
+            title:"AI"
+            left_action_items: [["menu"]]#lambda x: app.callback()
+            right_action_items: [["git"],["clock"],["dots-vertical"]]#lambda x: app.callback()
+        MDRaisedButton:
+            text:"ReturnToRegister"
+            size_hint:0.2,0.2
+            on_release:    
+                app.root.current="register_page"
+                root.manager.transition.direction = "left"
+            #app.title = "Welcome Note"
+        MDRaisedButton:
+            text:"ReturnToRegister"
+            size_hint:0.2,0.2
+            on_release:    
+                app.root.current="register_page"
+                root.manager.transition.direction = "left"
+            #app.title = "Welcome Note"
+        MDLabel:
+            id:dash_label
+            text:"This is a test"
+        MDBottomAppBar:
+            MDTopAppBar:
+                title: "ProjectSystem"
+                icon: "git"
+                type: "bottom"
+                left_action_items: [["menu"]]
+                mode:"free-end"
+                #on_action_button: app.callback(self.icon)                          
+<LoginScreen>:
+    name:"login_page"
+    #app.title ="LOGIN"
+    #app.theme_cls.primary_palette = "Light"
+    MDCard:
+        #size_hint: None,None
+        size_hint:0.55,0.55
+        elevation:5
+        pos_hint: {'center_x':0.5 , 'center_y':0.5 }
+        MDGridLayout:
+            cols:1
+            #orientation: "vertical"
+            MDLabel:
+                color:"black"
+                text:"LOGIN"
+                pos_hint:{"center_x":0.5,"center_y":0.5}
+                md_bg_color:"yellow"
+                halign:"center"
+            MDGridLayout:
+                #orientation:"vertical"
+                cols:2
+                
+                MDLabel:
+                    #md_bg_color:"black"
+                    text:'UserName'
+                    color:"black"
+                MDTextField:
+                    id:UserName
+                    hint_text: "Enter UserName..."
+                    helper_text: "There will always be a mistake"
+                    helper_text_mode: "on_error"
+                MDLabel:
+                    color:"black"
+                    text:'Password'
+                MDTextField:
+                    id:UserName
+                    hint_text: "Enter Password..."
+                    helper_text: "There will always be a mistake"
+                    helper_text_mode: "on_error"
+                    password:True
+            MDRaisedButton:
+                text:"LOGIN"
+                size_hint:0.3,0.5
+                on_release:      
+                    app.root.current="welcome_note"
+                    root.manager.transition.direction = "right"
+                    app.title = "Welcome Note"
+            MDRaisedButton:
+                text:"REGISTER"
+                size_hint:0.3,0.5
+                on_release:      
+                    app.root.current="register_page"
+                    root.manager.transition.direction = "right"
+                    app.title = "Register"
+    

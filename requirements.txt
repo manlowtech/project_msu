@@ -1,0 +1,7 @@
+kivy
+kivymd
+gTTS
+playsound
+SpeechRecognition
+pyttsx3
+python-docx
